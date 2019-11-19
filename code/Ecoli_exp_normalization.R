@@ -25,26 +25,6 @@ chrom_datafile_10 <- "GSE114917_count_table.txt"
 data_chrom_10 <- read.delim(chrom_datafile_10, header = TRUE)
 rownames(data_chrom_10) <- data_chrom_10$GeneName
 sub_11 <- data_chrom_10[,-1]
-###cant use the below three datasets bc they are not strain k12
-##chrom_datafile_2 <- "GSE69020_GSM1690203_Sample_LF82-A-2-count.txt"
-##data_chrom_2 <- read.delim(chrom_datafile_2, header = FALSE)
-##colnames(data_chrom_2) <- c("Gene_ID", "2_1")
-##rownames(data_chrom_2) <- data_chrom_2$Gene_ID
-##sub_2 <- data_chrom_2[,2, drop=FALSE]
-##
-##chrom_datafile_3 <- "GSE69020_GSM1690205_Sample_LF82-B-2-count.txt"
-##data_chrom_3 <- read.delim(chrom_datafile_3, header = FALSE)
-##colnames(data_chrom_3) <- c("Gene_ID", "2_2")
-##rownames(data_chrom_3) <- data_chrom_3$Gene_ID
-##sub_3 <- data_chrom_3[,2, drop=FALSE]
-##
-##chrom_datafile_4 <- "GSE69020_GSM1690207_Sample_LF82-C-2-count.txt"
-##data_chrom_4 <- read.delim(chrom_datafile_4, header = FALSE)
-##colnames(data_chrom_4) <- c("Gene_ID", "2_3")
-##rownames(data_chrom_4) <- data_chrom_3$Gene_ID
-##sub_4 <- data_chrom_4[,2, drop=FALSE]
-
-
 
 #below 5 samples need to have their IDs converted to gene name
 chrom_datafile_5 <- "GSE73673_GSM1900506_WT_1.htcount.txt"
@@ -113,12 +93,6 @@ ID_exp_merged <- Reduce(merge, lapply(list(IDs_df, sample3_all_reps), function(x
 row.names(ID_exp_merged) <- ID_exp_merged$Gene_ID
 ID_exp_merged <- ID_exp_merged[,-c(1,2,3)]
 
-###below dataset has weird gene names... is also from a diff strain so we cant use it anyways
-##chrom_datafile_8 <- "GSE73969_expression_subset.txt"
-##data_chrom_8 <- read.delim(chrom_datafile_8, header =TRUE)
-##rownames(data_chrom_8) <- data_chrom_8$GeneNames
-##sub_8 <- data_chrom_8[-c(1,3)]
-
 #below dataset has link btwn gene name and gene ID
 chrom_datafile_9 <- "GSE85914_expression_subset.txt"
 data_chrom_9 <- read.delim(chrom_datafile_9, header =TRUE)
@@ -140,7 +114,6 @@ rownames(data_chrom_10) <- data_chrom_10$Gene_ID
 sub_10 <- data_chrom_10[,-1]
 
 
-##############################edit here########################
 #merging each dataset by row name into one large dataset
 exp_dat_all_reps <- Reduce(merge, lapply(list(sub_1, sub_11, ID_exp_merged, sub_9, sub_10), function(x) data.frame(x, rn = row.names(x))))
 row.names(exp_dat_all_reps) <- exp_dat_all_reps$rn

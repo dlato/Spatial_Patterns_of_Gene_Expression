@@ -68,10 +68,6 @@ ID_exp_merged <- Reduce(merge, lapply(list(IDs_df, sub_6), function(x) data.fram
 row.names(ID_exp_merged) <- ID_exp_merged$locus_tag
 ID_exp_merged <- ID_exp_merged[,-c(1,2,3)]
 
-##exp_combined_data_test <- merge(sub_1, sub_2, sub_3, by="row.names", all=TRUE)
-##test <- join_all(list(sub_1,sub_2,sub_3), by = "row.names", type = 'full')
-##exp_combined_data_test[is.na(exp_combined_data_test)] <- 0
-
 #merging each dataset by row name into one large dataset
 exp_dat_all_reps <- Reduce(merge, lapply(list(sub_1, sub_2, sub_3, sub_4,sub_5,ID_exp_merged), function(x) data.frame(x, rn = row.names(x))))
 row.names(exp_dat_all_reps) <- exp_dat_all_reps$rn
